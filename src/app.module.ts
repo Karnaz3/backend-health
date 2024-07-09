@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AppService } from './app.service';
-import { AppController } from './application/controllers/app.controller';
-import typeorm from './config/typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import typeorm from './config/typeorm';
+import { ControllerModule } from './application/controllers/controller.module';
+import { ServiceModule } from './services/service.module';
 
 @Module({
   imports: [
@@ -15,8 +15,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => configService.get('typeorm'),
     }),
+    ControllerModule,
+    ServiceModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
