@@ -5,7 +5,7 @@ import { ValidationException } from './application/decorators/exceptions/validat
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 8000;
 
   app.setGlobalPrefix('api');
 
